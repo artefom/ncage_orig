@@ -2,7 +2,7 @@ class TConsole_IContainter{ public: virtual void Call( IArguments* ) = 0; };
 template< class F > class TConsole_Container : public TConsole_IContainter {};
 
 template<>
-class TConsole_Container< void (*)(void) > : public TConsole_IContainter // без аргументов
+class TConsole_Container< void (*)(void) > : public TConsole_IContainter // Р±РµР· Р°СЂРіСѓРјРµРЅС‚РѕРІ
 {
 	public:
 			
@@ -22,7 +22,7 @@ class TConsole_Container< void (*)(void) > : public TConsole_IContainter // без 
 };
 
 template< class A1 >
-class TConsole_Container< void (*)(A1) > : public TConsole_IContainter // один аргумент
+class TConsole_Container< void (*)(A1) > : public TConsole_IContainter // РѕРґРёРЅ Р°СЂРіСѓРјРµРЅС‚
 {
 	public:
 			

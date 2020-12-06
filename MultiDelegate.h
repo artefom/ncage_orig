@@ -1,4 +1,4 @@
-// Аргументы 
+// РђСЂРіСѓРјРµРЅС‚С‹ 
 
 struct NIL {};
 
@@ -12,7 +12,7 @@ template< class T1 = NIL, class T2 = NIL >
   public: T1 arg1; T2 arg2;
 };
 
-// Базовый класс контейнеров для последующей шаблонной инициализации
+// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РєРѕРЅС‚РµР№РЅРµСЂРѕРІ РґР»СЏ РїРѕСЃР»РµРґСѓСЋС‰РµР№ С€Р°Р±Р»РѕРЅРЅРѕР№ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
 
 template <class Base> class IContainer 
 { 
@@ -26,9 +26,9 @@ public:
 };
 template< class B, class T, class M> class Container : public IContainer<B> {};
 
-// Здесь будет храниться информация о событии
+// Р—РґРµСЃСЊ Р±СѓРґРµС‚ С…СЂР°РЅРёС‚СЊСЃСЏ РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃРѕР±С‹С‚РёРё
 
-//  Спецификация без аргументов.
+//  РЎРїРµС†РёС„РёРєР°С†РёСЏ Р±РµР· Р°СЂРіСѓРјРµРЅС‚РѕРІ.
 template< class B , class T>
   class Container< B, T, void (T::*)(void)> : public IContainer<B>
 {
@@ -83,7 +83,7 @@ template< class B , class T>
         
 };
 
-// Спецификация для одного аргумента.
+// РЎРїРµС†РёС„РёРєР°С†РёСЏ РґР»СЏ РѕРґРЅРѕРіРѕ Р°СЂРіСѓРјРµРЅС‚Р°.
 
 template< class B, class T, class A1 >
   class Container< B, T, void (T::*)(A1) > : public IContainer<B>
@@ -145,7 +145,7 @@ template< class B, class T, class A1 >
 };
 
 
-// событие
+// СЃРѕР±С‹С‚РёРµ
 template<class Base> class Events {
     public:
         list<Base>* array;
@@ -175,7 +175,7 @@ template<class Base> class Events {
         }
         
         
-        // присоединение класса и его метода 
+        // РїСЂРёСЃРѕРµРґРёРЅРµРЅРёРµ РєР»Р°СЃСЃР° Рё РµРіРѕ РјРµС‚РѕРґР° 
         template< class T, class U > void Connect( int ID, T* i_class, U i_method )
         {
             while(Containers.size() <= ID) Containers.push_back(0);
@@ -183,9 +183,9 @@ template<class Base> class Events {
 			Containers[ID]->push_back( new Container< Base, T, U >( i_class, i_method ) );
         }
         
-        // массовый вызов событий
+        // РјР°СЃСЃРѕРІС‹Р№ РІС‹Р·РѕРІ СЃРѕР±С‹С‚РёР№
         
-        void Call(int ID) // один аргумент
+        void Call(int ID) // РѕРґРёРЅ Р°СЂРіСѓРјРµРЅС‚
         {
             if ( (ID >= Containers.size()) || (Containers[ID] == 0) ) return;
             for (auto &v : *Containers[ID] )
@@ -194,7 +194,7 @@ template<class Base> class Events {
             }
         };
         
-        void Call( int ID, typename list<Base>::iterator it ) // ИТЕРАЦИЯ!
+        void Call( int ID, typename list<Base>::iterator it ) // РРўР•Р РђР¦РРЇ!
         {
             if ( (ID >= Containers.size()) || (Containers[ID] == 0) ) return;
             for (auto &v : *Containers[ID] )
@@ -203,7 +203,7 @@ template<class Base> class Events {
             }
         };
         
-        template< class T1 > void Call(int ID, T1 i_arg1 ) // два аргумента
+        template< class T1 > void Call(int ID, T1 i_arg1 ) // РґРІР° Р°СЂРіСѓРјРµРЅС‚Р°
         {
             if ( (ID >= Containers.size()) || (Containers[ID] == 0) ) return;
             for (auto &v : *Containers[ID] )
@@ -213,9 +213,9 @@ template<class Base> class Events {
             }
         };
         
-        // Вызов события для частного объекта
+        // Р’С‹Р·РѕРІ СЃРѕР±С‹С‚РёСЏ РґР»СЏ С‡Р°СЃС‚РЅРѕРіРѕ РѕР±СЉРµРєС‚Р°
 
-        void Call(Base b, int ID) // один аргумент
+        void Call(Base b, int ID) // РѕРґРёРЅ Р°СЂРіСѓРјРµРЅС‚
         {
             if ( (ID >= Containers.size()) || (Containers[ID] == 0) ) return;
 			for (auto &v : *Containers[ID] )
@@ -224,7 +224,7 @@ template<class Base> class Events {
 			}
         };
         
-        template< class T1 > void Call(Base b, int ID, T1 i_arg1 ) // два аргумента
+        template< class T1 > void Call(Base b, int ID, T1 i_arg1 ) // РґРІР° Р°СЂРіСѓРјРµРЅС‚Р°
         {
             if ( (ID >= Containers.size()) || (Containers[ID] == 0) ) return;
 			for (auto &v : *Containers[ID] )
@@ -235,11 +235,11 @@ template<class Base> class Events {
         };
         
         
-// ############################ Для особого массива:
+// ############################ Р”Р»СЏ РѕСЃРѕР±РѕРіРѕ РјР°СЃСЃРёРІР°:
         
-        // массовый вызов событий
+        // РјР°СЃСЃРѕРІС‹Р№ РІС‹Р·РѕРІ СЃРѕР±С‹С‚РёР№
         
-        void Call(list<Base>* ar, int ID) // один аргумент
+        void Call(list<Base>* ar, int ID) // РѕРґРёРЅ Р°СЂРіСѓРјРµРЅС‚
         {
             if ( (ID >= Containers.size()) || (Containers[ID] == 0) ) return;
             for (auto &v : *Containers[ID] )
@@ -248,7 +248,7 @@ template<class Base> class Events {
             }
         };
         
-        template< class T1 > void Call(list<Base>* ar, int ID, T1 i_arg1 ) // два аргумента
+        template< class T1 > void Call(list<Base>* ar, int ID, T1 i_arg1 ) // РґРІР° Р°СЂРіСѓРјРµРЅС‚Р°
         {
             if ( (ID >= Containers.size()) || (Containers[ID] == 0) ) return;
             for (auto &v : *Containers[ID] )

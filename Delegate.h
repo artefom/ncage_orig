@@ -1,9 +1,9 @@
-//  Контейнер для хранения до 2-х аргументов.
-//  Контейнер для хранения указателя на метод.
+//  РљРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РґРѕ 2-С… Р°СЂРіСѓРјРµРЅС‚РѕРІ.
+//  РљРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ СѓРєР°Р·Р°С‚РµР»СЏ РЅР° РјРµС‚РѕРґ.
 class IContainer_Single{ public: virtual void Call( IArguments* ) = 0; };
 template< class T, class M > class Container_Single : public IContainer_Single {};
 
-//  Специализация для метода без аргументов.
+//  РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ РґР»СЏ РјРµС‚РѕРґР° Р±РµР· Р°СЂРіСѓРјРµРЅС‚РѕРІ.
 template< class T >
   class Container_Single< T, void (T::*)(void) > : public IContainer_Single
 {
@@ -16,7 +16,7 @@ template< class T >
   }
 };
 
-//  Специализация для метода с одним аргументом.
+//  РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ РґР»СЏ РјРµС‚РѕРґР° СЃ РѕРґРЅРёРј Р°СЂРіСѓРјРµРЅС‚РѕРј.
 template< class T, class A1 >
   class Container_Single< T, void (T::*)(A1) > : public IContainer_Single
 {
@@ -32,7 +32,7 @@ template< class T, class A1 >
   }
 };
 
-//  Специализация для метода с двумя аргументами
+//  РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ РґР»СЏ РјРµС‚РѕРґР° СЃ РґРІСѓРјСЏ Р°СЂРіСѓРјРµРЅС‚Р°РјРё
 template< class T, class A1, class A2 >
   class Container_Single< T, void (T::*)(A1,A2) > : public IContainer_Single
 {
@@ -48,7 +48,7 @@ template< class T, class A1, class A2 >
   }
 };
 
-//  Собственно делегат.
+//  РЎРѕР±СЃС‚РІРµРЅРЅРѕ РґРµР»РµРіР°С‚.
 class Delegate
 {
 public:

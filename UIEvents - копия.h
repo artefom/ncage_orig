@@ -1,4 +1,4 @@
-// Спецификация для одного аргумента.
+// РЎРїРµС†РёС„РёРєР°С†РёСЏ РґР»СЏ РѕРґРЅРѕРіРѕ Р°СЂРіСѓРјРµРЅС‚Р°.
 
 class IUIContainer 
 { 
@@ -12,9 +12,9 @@ public:
 };
 template< class B, class T, class M> class UIContainer : public IUIContainer {};
 
-// Здесь будет храниться информация о событии
+// Р—РґРµСЃСЊ Р±СѓРґРµС‚ С…СЂР°РЅРёС‚СЊСЃСЏ РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃРѕР±С‹С‚РёРё
 
-//  Спецификация без аргументов.
+//  РЎРїРµС†РёС„РёРєР°С†РёСЏ Р±РµР· Р°СЂРіСѓРјРµРЅС‚РѕРІ.
 template< class B , class T>
   class UIContainer< B, T, void (T::*)(void)> : public IUIContainer
 {
@@ -69,7 +69,7 @@ template< class B , class T>
         
 };
 
-// Спецификация для одного аргумента.
+// РЎРїРµС†РёС„РёРєР°С†РёСЏ РґР»СЏ РѕРґРЅРѕРіРѕ Р°СЂРіСѓРјРµРЅС‚Р°.
 
 template< class B, class T, class A1 >
   class UIContainer< B, T, void (T::*)(A1) > : public IUIContainer
@@ -159,7 +159,7 @@ class UIEvents {
         }
         
         
-        // присоединение класса и его метода 
+        // РїСЂРёСЃРѕРµРґРёРЅРµРЅРёРµ РєР»Р°СЃСЃР° Рё РµРіРѕ РјРµС‚РѕРґР° 
         template< class T, class U > void Connect( int ID, T* i_class, U i_method )
         {
             while(UIContainers.size() <= ID) UIContainers.push_back(0);
@@ -167,9 +167,9 @@ class UIEvents {
 			UIContainers[ID]->push_back( new UIContainer< TUI_Childless*, T, U >( i_class, i_method ) );
         }
         
-        // массовый вызов событий
+        // РјР°СЃСЃРѕРІС‹Р№ РІС‹Р·РѕРІ СЃРѕР±С‹С‚РёР№
         
-        void Call(int ID) // один аргумент
+        void Call(int ID) // РѕРґРёРЅ Р°СЂРіСѓРјРµРЅС‚
         {
             if ( (ID >= UIContainers.size()) || (UIContainers[ID] == 0) ) return;
             for (auto &v : *UIContainers[ID] )
@@ -178,7 +178,7 @@ class UIEvents {
             }
         };
         
-        void Call( int ID, typename vector<TUI_Childless*>::iterator it ) // ИТЕРАЦИЯ!
+        void Call( int ID, typename vector<TUI_Childless*>::iterator it ) // РРўР•Р РђР¦РРЇ!
         {
             if ( (ID >= UIContainers.size()) || (UIContainers[ID] == 0) ) return;
             for (auto &v : *UIContainers[ID] )
@@ -187,7 +187,7 @@ class UIEvents {
             }
         };
         
-        template< class T1 > void Call(int ID, T1 i_arg1 ) // два аргумента
+        template< class T1 > void Call(int ID, T1 i_arg1 ) // РґРІР° Р°СЂРіСѓРјРµРЅС‚Р°
         {
             if ( (ID >= UIContainers.size()) || (UIContainers[ID] == 0) ) return;
             for (auto &v : *UIContainers[ID] )
@@ -197,9 +197,9 @@ class UIEvents {
             }
         };
         
-        // Вызов события для частного объекта
+        // Р’С‹Р·РѕРІ СЃРѕР±С‹С‚РёСЏ РґР»СЏ С‡Р°СЃС‚РЅРѕРіРѕ РѕР±СЉРµРєС‚Р°
 
-        void Call(TUI_Childless* b, int ID) // один аргумент
+        void Call(TUI_Childless* b, int ID) // РѕРґРёРЅ Р°СЂРіСѓРјРµРЅС‚
         {
             if ( (ID >= UIContainers.size()) || (UIContainers[ID] == 0) ) return;
 			for (auto &v : *UIContainers[ID] )
@@ -208,7 +208,7 @@ class UIEvents {
 			}
         };
         
-        template< class T1 > void Call(TUI_Childless* b, int ID, T1 i_arg1 ) // два аргумента
+        template< class T1 > void Call(TUI_Childless* b, int ID, T1 i_arg1 ) // РґРІР° Р°СЂРіСѓРјРµРЅС‚Р°
         {
             if ( (ID >= UIContainers.size()) || (UIContainers[ID] == 0) ) return;
 			for (auto &v : *UIContainers[ID] )
@@ -219,11 +219,11 @@ class UIEvents {
         };
         
         
-// ############################ Для особого массива:
+// ############################ Р”Р»СЏ РѕСЃРѕР±РѕРіРѕ РјР°СЃСЃРёРІР°:
         
-        // массовый вызов событий
+        // РјР°СЃСЃРѕРІС‹Р№ РІС‹Р·РѕРІ СЃРѕР±С‹С‚РёР№
         
-        void Call(list<TUI_Childless*>* ar, int ID) // один аргумент
+        void Call(list<TUI_Childless*>* ar, int ID) // РѕРґРёРЅ Р°СЂРіСѓРјРµРЅС‚
         {
             if ( (ID >= UIContainers.size()) || (UIContainers[ID] == 0) ) return;
             for (auto &v : *UIContainers[ID] )
@@ -232,7 +232,7 @@ class UIEvents {
             }
         };
         
-        template< class T1 > void Call(list<TUI_Childless*>* ar, int ID, T1 i_arg1 ) // два аргумента
+        template< class T1 > void Call(list<TUI_Childless*>* ar, int ID, T1 i_arg1 ) // РґРІР° Р°СЂРіСѓРјРµРЅС‚Р°
         {
             if ( (ID >= UIContainers.size()) || (UIContainers[ID] == 0) ) return;
             for (auto &v : *UIContainers[ID] )
