@@ -1,0 +1,19 @@
+#version 150
+
+uniform sampler2D texture;
+uniform sampler1D indexes;
+
+uniform int ScrH;
+uniform int World_Halfbounds;
+uniform float TransX;
+uniform float TransY;
+uniform float absgridsize;
+out vec4 MyFragColor;
+void main(void) {
+	ivec2 pos;
+	int pos2;
+	pos.y = int(floor( (gl_FragCoord.x-TransX)/absgridsize ) ) + World_Halfbounds;
+	pos.x = int(floor( (ScrH-gl_FragCoord.y-TransY)/absgridsize ) ) + World_Halfbounds;
+
+	MyFragColor = texelFetch(indexes,int(texelFetch(texture,pos,0).r*255),0);
+}
